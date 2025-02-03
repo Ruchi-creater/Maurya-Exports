@@ -4,6 +4,7 @@
     <title>Supplier Feedback Form</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        /* Previous styles remain the same */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             max-width: 800px;
@@ -243,13 +244,14 @@
 
     <script>
         document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
-            const submitButton = document.getElementById('submitButton');
-            submitButton.disabled = true;
-            submitButton.innerHTML = 'Submitting...';
             e.preventDefault();
             
+            const submitButton = document.getElementById('submitButton');
             const successMessage = document.getElementById('successMessage');
             const errorMessage = document.getElementById('errorMessage');
+            
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Submitting...';
             
             const formData = {
                 supplierName: document.getElementById('supplierName').value,
@@ -279,11 +281,6 @@
                 setTimeout(() => {
                     successMessage.style.display = 'none';
                 }, 3000);
-                
-            } finally {
-                submitButton.disabled = false;
-                submitButton.innerHTML = 'Submit Feedback';
-            }
             } catch (error) {
                 console.error('Error:', error);
                 successMessage.style.display = 'none';
@@ -292,6 +289,9 @@
                 setTimeout(() => {
                     errorMessage.style.display = 'none';
                 }, 3000);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML = 'Submit Feedback';
             }
         });
     </script>
